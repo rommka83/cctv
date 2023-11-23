@@ -4,78 +4,77 @@ import { SvgSprite } from '../../shared/ui/svg-sprite';
 
 export const Menu = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
-    <nav className='bg-main flex h-[10%] w-full justify-between'>
+    <nav className='flex h-[10%] w-full justify-between bg-main'>
       <ul className='flex h-full items-center gap-12 px-8'>
         <li className='cursor-pointer'>
-          <Link to='/'>
+          <Link to='/cctv/'>
             <SvgSprite
               type='power'
               className={`${
-                pathname === '/' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/broadcastsPage'>
+          <Link to='/cctv/broadcastsPage'>
             <SvgSprite
               type='play'
               className={`${
-                pathname === '/broadcastsPage' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/broadcastsPage' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/sessionsPage'>
+          <Link to='/cctv/sessionsPage'>
             <SvgSprite
               type='sessions'
               className={`${
-                pathname === '/sessionsPage' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/sessionsPage' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/calculationPage'>
+          <Link to='/cctv/calculationPage'>
             <SvgSprite
               type='calculation'
               className={`${
-                pathname === '/calculationPage' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/calculationPage' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/locationPage'>
+          <Link to='/cctv/locationPage'>
             <SvgSprite
               type='location'
               className={`${
-                pathname === '/locationPage' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/locationPage' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/settingsPage'>
+          <Link to='/cctv/settingsPage'>
             <SvgSprite
               type='settings'
               className={`${
-                pathname === '/settingsPage' ? 'fill-button' : 'fill-secondary'
-              } fill-secondary h-12 w-8 active:opacity-50`}
+                pathname === '/cctv/settingsPage' ? 'fill-button' : 'fill-secondary'
+              } h-12 w-8 active:opacity-50`}
             />
           </Link>
         </li>
       </ul>
       <ul className='flex h-full items-center gap-12 px-8'>
         <li className='cursor-pointer'>
-          <SvgSprite type='help' className='fill-secondary h-12 w-8 active:opacity-50' />
+          <SvgSprite type='help' className='h-12 w-8 fill-secondary active:opacity-50' />
         </li>
         <li className='cursor-pointer'>
-          <SvgSprite type='exit' className='fill-secondary h-12 w-8 active:opacity-50' />
+          <SvgSprite type='exit' className='h-12 w-8 fill-secondary active:opacity-50' />
         </li>
       </ul>
     </nav>

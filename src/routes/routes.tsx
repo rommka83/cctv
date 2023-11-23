@@ -11,7 +11,7 @@ import { StartPage } from '../pages/startPage';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/cctv/',
     element: <App />,
     errorElement: <ErrorPage />,
     // loader: contactLoader,
@@ -21,23 +21,23 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <StartPage /> },
           {
-            path: '/broadcastsPage',
+            path: '/cctv/broadcastsPage',
             element: <BroadcastsPage />,
           },
           {
-            path: '/sessionsPage',
+            path: '/cctv/sessionsPage',
             element: <SessionsPage />,
           },
           {
-            path: '/calculationPage',
+            path: '/cctv/calculationPage',
             element: <CalculationPage />,
           },
           {
-            path: '/locationPage',
+            path: '/cctv/locationPage',
             element: <LocationPage />,
           },
           {
-            path: '/settingsPage',
+            path: '/cctv/settingsPage',
             element: <SettingsPage />,
           },
         ],

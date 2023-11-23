@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import Row from './components/Row';
 import { BtnControl } from '../../shared/ui/btnControl';
 import { CustomCheckBox } from '../../shared/ui/customCheckBox';
@@ -24,7 +23,8 @@ export function Connections() {
   };
 
   useEffect(() => {
-    error && alert('Сбросте существующие подключения');
+    console.log(data);
+    error && alert('Сбросте подключения!');
   }, [error]);
 
   return (

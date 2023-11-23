@@ -16,16 +16,17 @@ type Props = {
     | 'notes'
     | 'playlist'
     | 'phone';
+  onClick?: () => void;
 };
 
-export function BtnControl({ type }: Props) {
-  return type ? (
-    <div className='bg-border active:bg-main cursor-pointer rounded-full p-4'>
-      <SvgSprite type={type} className='fill-secondary h-5 w-5' />
-    </div>
-  ) : (
-    <div className='bg-border active:bg-main cursor-pointer rounded-full p-4'>
-      <div className='bg-secondary h-5 w-5'></div>
+export function BtnControl({ type, onClick }: Props) {
+  return (
+    <div className='cursor-pointer rounded-full bg-border p-4 active:bg-main' onClick={onClick}>
+      {type ? (
+        <SvgSprite type={type} className='h-5 w-5 fill-secondary' />
+      ) : (
+        <div className='h-5 w-5 bg-secondary'></div>
+      )}
     </div>
   );
 }
