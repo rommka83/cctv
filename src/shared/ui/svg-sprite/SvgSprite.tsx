@@ -13,7 +13,13 @@ type Props = {
     | 'atm'
     | 'notes'
     | 'playlist'
-    | 'phone';
+    | 'phone'
+    | 'fullscreen'
+    | 'fast_forward'
+    | 'fast_rewind'
+    | 'pause'
+    | 'skip_next'
+    | 'skip_previous';
   className?: string;
 };
 
@@ -219,6 +225,92 @@ export const SvgSprite = ({ type, className }: Props) => {
             fillRule='evenodd'
             clipRule='evenodd'
             d='M9.33325 0.833313H2.66659C1.51659 0.833313 0.583252 1.76665 0.583252 2.91665V17.0833C0.583252 18.2333 1.51659 19.1666 2.66659 19.1666H9.33325C10.4833 19.1666 11.4166 18.2333 11.4166 17.0833V2.91665C11.4166 1.76665 10.4833 0.833313 9.33325 0.833313ZM5.99992 18.3333C5.30825 18.3333 4.74992 17.775 4.74992 17.0833C4.74992 16.3916 5.30825 15.8333 5.99992 15.8333C6.69159 15.8333 7.24992 16.3916 7.24992 17.0833C7.24992 17.775 6.69159 18.3333 5.99992 18.3333ZM2.24992 15H9.74992V3.33331H2.24992V15Z'
+          />
+        </svg>
+      );
+    case 'fullscreen':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 14 14'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M2 5H0V0H5V2H2V5ZM0 9H2V12H5V14H0V9ZM12 12H9V14H14V9H12V12ZM9 2V0H14V5H12V2H9Z'
+          />
+        </svg>
+      );
+    case 'fast_forward':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 18 12'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M8.75 6L0.25 12V0L8.75 6ZM9.25 12L17.75 6L9.25 0V12ZM5.28 6L2.25 3.86V8.14L5.28 6ZM14.28 6L11.25 3.86V8.14L14.28 6Z'
+          />
+        </svg>
+      );
+    case 'fast_rewind':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 18 12'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M0.25 6L8.75 0V12L0.25 6ZM17.75 0L9.25 6L17.75 12V0ZM3.72 6L6.75 8.14V3.86L3.72 6ZM12.72 6L15.75 8.14V3.86L12.72 6Z'
+          />
+        </svg>
+      );
+    case 'pause':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 12 14'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path fillRule='evenodd' clipRule='evenodd' d='M4 14H0V0H4V14ZM8 14V0H12V14H8Z' />
+        </svg>
+      );
+    case 'skip_next':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 12 12'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M0 12L8.5 6L0 0V12ZM2 3.86L5.03 6L2 8.14V3.86ZM12 0H10V12H12V0Z'
+          />
+        </svg>
+      );
+    case 'skip_previous':
+      return (
+        <svg
+          className={className}
+          viewBox='0 0 12 12'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M0 0H2V12H0V0ZM3.5 6L12 12V0L3.5 6ZM6.97 6L10 8.14V3.86L6.97 6Z'
           />
         </svg>
       );
