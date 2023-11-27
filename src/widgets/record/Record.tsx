@@ -20,19 +20,19 @@ export function Record({ data, className }: Props) {
           <BtnControl type='play' />
         </div>
       </div>
-      <div className='border-border flex-1 rounded border-2'>
+      <div className='flex-1 rounded border-2 border-border'>
         <table className='w-full '>
           <thead>
             <tr>
-              <th className='border-border border-2 border-l-0 border-t-0'>
+              <th className='border-2 border-l-0 border-t-0 border-border'>
                 <CustomCheckBox handleCheck={(val) => handleChange(val)} />
               </th>
-              <th className='border-border border-2 border-t-0'>Название</th>
-              <th className='border-border border-2 border-t-0'>Камеры</th>
-              <th className='border-border border-2 border-t-0'>Дата</th>
-              <th className='border-border border-2 border-t-0'>Длительность</th>
-              <th className='border-border border-2 border-t-0'>Воспроизведение</th>
-              <th className='border-border border-2 border-r-0 border-t-0'>Примечание</th>
+              <th className='border-2 border-t-0 border-border'>Название</th>
+              <th className='border-2 border-t-0 border-border'>Камеры</th>
+              <th className='border-2 border-t-0 border-border'>Дата</th>
+              <th className='border-2 border-t-0 border-border'>Длительность</th>
+              <th className='border-2 border-t-0 border-border'>Воспроизведение</th>
+              <th className='border-2 border-r-0 border-t-0 border-border'>Примечание</th>
             </tr>
           </thead>
           <tbody>

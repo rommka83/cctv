@@ -157,7 +157,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
           <MenuList className='border-none bg-main'>
             <MenuItem className='flex items-center hover:bg-placeholder focus:bg-placeholder active:bg-placeholder'>
               <span className='text-secondary'>скорость:</span>
-              <span className='text-red ml-auto'>{speed}</span>
+              <span className='ml-auto text-red'>{speed}</span>
             </MenuItem>
 
             <MenuItem
@@ -200,7 +200,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
               onClick={() => setTypeCamera((old) => (old === 'опт.' ? 'инфр.' : 'опт.'))}
             >
               <span className='text-secondary'>тип камеры:</span>
-              <span className='text-red ml-auto'>{typeCamera}</span>
+              <span className='ml-auto text-red'>{typeCamera}</span>
             </MenuItem>
             <MenuItem
               className='flex items-center hover:bg-placeholder focus:bg-placeholder active:bg-placeholder'

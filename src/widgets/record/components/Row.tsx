@@ -10,15 +10,15 @@ export default function Row({ data }: Props) {
   };
   return (
     <tr>
-      <td className='border-border border-2 border-l-0 text-center'>
+      <td className='border-2 border-l-0 border-border text-center'>
         <CustomCheckBox handleCheck={(val) => handleChange(val)} />
       </td>
-      <td className='border-border border-2 text-center'>{data[1]}</td>
-      <td className='border-border border-2 text-center'>{data[2]}</td>
-      <td className='border-border border-2 text-center'>{data[3]}</td>
-      <td className='border-border border-2 text-center'>{data[4]}</td>
-      <td className='border-border border-2 text-center'>{data[5]}</td>
-      <td className='border-border border-2 border-r-0 text-center'>{data[6]}</td>
+      <td className='border-2 border-border text-center'>{data[1]}</td>
+      <td className='border-2 border-border text-center'>{data[2]}</td>
+      <td className='border-2 border-border text-center'>{data[3]}</td>
+      <td className='border-2 border-border text-center'>{data[4]}</td>
+      <td className='border-2 border-border text-center'>{data[5]}</td>
+      <td className='border-2 border-r-0 border-border text-center'>{data[6]}</td>
     </tr>
   );
 }

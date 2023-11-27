@@ -4,7 +4,7 @@ import { Menu } from '../features/menu';
 
 function App() {
   return (
-    <div className='bg-bg flex h-screen w-screen flex-col text-white'>
+    <div className='flex h-screen w-screen flex-col bg-bg text-white'>
       <div className='flex-1 px-8'>
         <Outlet />
       </div>
