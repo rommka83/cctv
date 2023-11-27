@@ -20,6 +20,7 @@ export const getVideoDevice = createAsyncThunk('videoDevice/getVideoDevice', asy
   const response = await axios.post('http://192.168.5.127:7300/video_device', {
     body: 'http://192.168.5.127:7301',
   });
+  console.log('dd');
 
   return response.data;
 });
@@ -50,6 +51,7 @@ export const videoDeviceSlice = createSlice({
       .addCase(deleteVideoDevice.fulfilled, (state) => {
         state.pending = false;
         state.data = null;
+        state.error = false;
       });
   },
 });

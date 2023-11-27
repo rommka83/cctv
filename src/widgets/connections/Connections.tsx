@@ -49,18 +49,7 @@ export function Connections() {
               <th className='border-2 border-r-0 border-t-0 border-border'>Примечание</th>
             </tr>
           </thead>
-          <tbody>
-            {data && (
-              <Row
-                data={{
-                  1: data.name,
-                  2: data.uri,
-                  3: data.activate,
-                  4: `количество систем: ${data.cameraSystem.length}`,
-                }}
-              />
-            )}
-          </tbody>
+          <tbody>{data && <Row data={data} />}</tbody>
         </table>
       </div>
     </div>
