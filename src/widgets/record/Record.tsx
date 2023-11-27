@@ -13,7 +13,7 @@ export function Record({ data, className }: Props) {
   return (
     <div className={`${className} flex h-full flex-col pb-8`}>
       <div className='flex items-center gap-8 py-3'>
-        <span className='text-2xl'>Запись</span>
+        <span className='text-2xl text-secondary'>Запись</span>
         <div className='flex items-center gap-4'>
           <BtnControl type='add' />
           <BtnControl />

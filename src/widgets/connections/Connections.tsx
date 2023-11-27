@@ -30,7 +30,7 @@ export function Connections() {
   return (
     <div className='flex h-full flex-col'>
       <div className='flex h-20 items-center gap-8'>
-        <span className='text-2xl'>Подключения</span>
+        <span className='text-2xl text-secondary'>Подключения</span>
         <div className='flex items-center gap-4'>
           <BtnControl type='add' onClick={videoDeviceAdded} />
           <BtnControl onClick={() => dispatch(deleteVideoDevice())} />

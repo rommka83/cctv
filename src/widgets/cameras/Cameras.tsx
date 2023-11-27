@@ -14,7 +14,7 @@ export function Cameras() {
   return (
     <div className='flex h-full flex-col'>
       <div className='flex h-20 items-center'>
-        <span className='text-2xl'>Камеры</span>
+        <span className='text-2xl text-secondary'>Камеры</span>
       </div>
       <div className='flex-1 rounded border-2 border-border'>
         <table className='w-full '>

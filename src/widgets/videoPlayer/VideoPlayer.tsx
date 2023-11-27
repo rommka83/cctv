@@ -142,15 +142,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
           </div>
         )}
 
-        <Menu
-          dismiss={{
-            outsidePress: (ev) => {
-              setMenuVerticalIsOpen(!ev);
-              return !ev;
-            },
-          }}
-          open={menuVerticalIsOpen}
-        >
+        <Menu open={menuVerticalIsOpen}>
           <MenuHandler>
             <div className='h-[1px] w-[1px]'></div>
           </MenuHandler>
