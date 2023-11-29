@@ -25,11 +25,17 @@ type Props = {
 
   onClick?: () => void;
   player?: boolean;
+  active?: boolean;
 };
 
-export function BtnControl({ type, onClick, player }: Props) {
+export function BtnControl({ type, onClick, player, active }: Props) {
   return !player ? (
-    <div className='cursor-pointer rounded-full bg-border p-4 active:bg-main' onClick={onClick}>
+    <div
+      className={`rounded-full ${
+        active ? 'cursor-pointer opacity-100 active:bg-main' : 'opacity-25'
+      } bg-border p-4 `}
+      onClick={active ? onClick : () => {}}
+    >
       {type ? (
         <SvgSprite type={type} className='h-5 w-5 fill-secondary' />
       ) : (

@@ -1,21 +1,29 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+import { Checkbox } from '@material-tailwind/react';
 
 type Props = {
   handleCheck: (val: boolean) => void;
+  check?: boolean;
 };
 
-export function CustomCheckBox({ handleCheck }: Props) {
-  const [checked, setChecked] = useState(false);
+export function CustomCheckBox({ handleCheck, check }: Props) {
+  const [checked, setChecked] = useState(check ?? false);
 
   const handleChange = () => {
     setChecked(!checked);
     handleCheck(!checked);
   };
 
+  const ref = useRef(null);
+
   return (
-    <div
-      className={`mx-auto h-4 w-4 cursor-pointer border ${checked && 'bg-secondary'}`}
-      onClick={handleChange}
-    ></div>
+    <Checkbox
+      checked={checked}
+      crossOrigin={undefined}
+      inputRef={ref}
+      onChange={handleChange}
+      color='green'
+    />
   );
 }

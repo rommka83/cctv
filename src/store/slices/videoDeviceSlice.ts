@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { IVideoDevice } from '../../shared/types/videoDeviceTypes';
@@ -17,23 +17,32 @@ const initialState: videoDeviceState = {
 };
 
 export const getVideoDevice = createAsyncThunk('videoDevice/getVideoDevice', async () => {
-  const response = await axios.post('http://192.168.5.127:7300/video_device', {
-    body: 'http://192.168.5.127:7301',
-  });
-  console.log('dd');
+  const response = await axios
+    .post('http://192.168.5.127:7300/video_device', {
+      body: 'http://192.168.5.127:7301',
+    })
+    .then((resp) => resp.data)
+    .catch((err) => alert(`${err.message}\n\nпопробуйте нажать на кнопку подключения повторно`));
 
-  return response.data;
+  return response;
 });
 
 // TODO: удаление по id
-export const deleteVideoDevice = createAsyncThunk('videoDevice/deleteVideoDevice', async () => {
-  await axios.delete('http://192.168.5.127:7300/video_device/257').then(function () {});
-});
+export const deleteVideoDevice = createAsyncThunk(
+  'videoDevice/deleteVideoDevice',
+  async (id?: number) => {
+    await axios.delete(`http://192.168.5.127:7300/video_device/${id}`).then(function () {});
+  },
+);
 
 export const videoDeviceSlice = createSlice({
   name: 'videoDevice',
   initialState,
-  reducers: {},
+  reducers: {
+    changeSelected: (state, action: PayloadAction<boolean>) => {
+      if (state.data) state.data.selected = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getVideoDevice.pending, (state) => {
@@ -42,6 +51,7 @@ export const videoDeviceSlice = createSlice({
       .addCase(getVideoDevice.fulfilled, (state, { payload }) => {
         state.pending = false;
         state.data = payload;
+        if (state.data) state.data.selected = false;
       })
       .addCase(getVideoDevice.rejected, (state) => {
         state.pending = false;
@@ -55,6 +65,8 @@ export const videoDeviceSlice = createSlice({
       });
   },
 });
+
+export const { changeSelected } = videoDeviceSlice.actions;
 
 export const videoDevice = (state: RootState) => state.videoDevice;
 

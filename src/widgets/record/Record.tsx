@@ -1,10 +1,32 @@
+import { useState } from 'react';
+
+import {
+  Dialog,
+  Card,
+  CardBody,
+  Typography,
+  Input,
+  CardFooter,
+  Button,
+} from '@material-tailwind/react';
+
 import Row from './components/Row';
 import { BtnControl } from '../../shared/ui/btnControl';
 import { CustomCheckBox } from '../../shared/ui/customCheckBox';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { camerasActive } from '../../store/slices/camerasSlice';
+import { creatSession } from '../../store/slices/sessionSlice';
 
-type Props = { data?: unknown; className?: string };
+type Props = { className?: string };
 
-export function Record({ data, className }: Props) {
+export function Record({ className }: Props) {
+  const { data } = useAppSelector(camerasActive);
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState('');
+  const dispatch = useAppDispatch();
+
+  const handleOpen = () => setOpen((cur) => !cur);
+
   const handleChange = (value: boolean) => {
     console.log(value);
   };
@@ -15,7 +37,11 @@ export function Record({ data, className }: Props) {
       <div className='flex items-center gap-8 py-3'>
         <span className='text-2xl text-secondary'>Запись</span>
         <div className='flex items-center gap-4'>
-          <BtnControl type='add' />
+          <BtnControl
+            active={data.length > 0 ? true : false}
+            type='add'
+            onClick={() => setOpen(true)}
+          />
           <BtnControl />
           <BtnControl type='play' />
         </div>
@@ -49,6 +75,38 @@ export function Record({ data, className }: Props) {
           </tbody>
         </table>
       </div>
+      <Dialog size='xs' open={open} handler={handleOpen} className='bg-transparent shadow-none'>
+        <Card className='mx-auto w-full max-w-[24rem]'>
+          <CardBody className='flex flex-col gap-4'>
+            <Typography className='mb-3 font-normal' variant='paragraph' color='gray'>
+              Введите название сессии
+            </Typography>
+            <Input
+              label='Назание сессии'
+              size='lg'
+              crossOrigin={undefined}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </CardBody>
+          <CardFooter className='pt-0'>
+            <Button
+              variant='gradient'
+              onClick={() => {
+                dispatch(creatSession(name));
+
+                setName('');
+
+                handleOpen();
+              }}
+              fullWidth
+              color='green'
+            >
+              Отправить
+            </Button>
+          </CardFooter>
+        </Card>
+      </Dialog>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       {
         errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <StartPage /> },
+          { path: '/cctv/startPage', element: <StartPage /> },
           {
             path: '/cctv/broadcastsPage',
             element: <BroadcastsPage />,
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
             element: <LocationPage />,
           },
           {
-            path: '/cctv/settingsPage',
+            index: true,
             element: <SettingsPage />,
           },
         ],

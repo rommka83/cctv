@@ -9,7 +9,6 @@ export function Cameras() {
   const handleChange = (value: boolean) => {
     console.log(value);
   };
-  console.log(data);
 
   return (
     <div className='flex h-full flex-col'>
@@ -31,9 +30,9 @@ export function Cameras() {
             </tr>
           </thead>
           <tbody>
-            {data &&
+            {data?.selected &&
               data.cameraSystem.map((camera) => (
-                <Row key={camera.id} name={data.name} data={camera} />
+                <Row key={camera.id} name={data.name} camera={camera} />
               ))}
           </tbody>
         </table>

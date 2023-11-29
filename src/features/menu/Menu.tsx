@@ -1,19 +1,28 @@
 import { Link, useLocation } from 'react-router-dom';
 
 import { SvgSprite } from '../../shared/ui/svg-sprite';
+import { useAppDispatch } from '../../store/hooks';
+import { deleteVideoDevice, getVideoDevice } from '../../store/slices/videoDeviceSlice';
 
 export const Menu = () => {
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
 
   return (
     <nav className='flex h-[10%] w-full justify-between bg-main'>
       <ul className='flex h-full items-center gap-12 px-8'>
-        <li className='cursor-pointer'>
-          <Link to='/cctv/'>
+        <li
+          className='cursor-pointer'
+          onClick={() => {
+            dispatch(deleteVideoDevice(257));
+            dispatch(getVideoDevice());
+          }}
+        >
+          <Link to='/cctv/startPage'>
             <SvgSprite
               type='power'
               className={`${
-                pathname === '/cctv/' ? 'fill-button' : 'fill-secondary'
+                pathname === '/cctv/startPage' ? 'fill-button' : 'fill-secondary'
               } h-12 w-8 active:opacity-50`}
             />
           </Link>
@@ -59,11 +68,11 @@ export const Menu = () => {
           </Link>
         </li>
         <li className='cursor-pointer'>
-          <Link to='/cctv/settingsPage'>
+          <Link to='/cctv/'>
             <SvgSprite
               type='settings'
               className={`${
-                pathname === '/cctv/settingsPage' ? 'fill-button' : 'fill-secondary'
+                pathname === '/cctv/' ? 'fill-button' : 'fill-secondary'
               } h-12 w-8 active:opacity-50`}
             />
           </Link>

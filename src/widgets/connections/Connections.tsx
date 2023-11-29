@@ -4,23 +4,14 @@ import Row from './components/Row';
 import { BtnControl } from '../../shared/ui/btnControl';
 import { CustomCheckBox } from '../../shared/ui/customCheckBox';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  deleteVideoDevice,
-  getVideoDevice,
-  videoDevice,
-} from '../../store/slices/videoDeviceSlice';
+import { deleteVideoDevice, videoDevice } from '../../store/slices/videoDeviceSlice';
 
 export function Connections() {
-  const dispatch = useAppDispatch();
-
   const { data, error } = useAppSelector(videoDevice);
+  const dispatch = useAppDispatch();
 
   const handleChange = (value: boolean) => {
     console.log(value);
-  };
-
-  const videoDeviceAdded = () => {
-    dispatch(getVideoDevice());
   };
 
   useEffect(() => {
@@ -32,8 +23,11 @@ export function Connections() {
       <div className='flex h-20 items-center gap-8'>
         <span className='text-2xl text-secondary'>Подключения</span>
         <div className='flex items-center gap-4'>
-          <BtnControl type='add' onClick={videoDeviceAdded} />
-          <BtnControl onClick={() => dispatch(deleteVideoDevice())} />
+          <BtnControl type='add' />
+          <BtnControl
+            active={data?.selected}
+            onClick={() => dispatch(deleteVideoDevice(data ? data?.id : 0))}
+          />
         </div>
       </div>
       <div className='flex-1 rounded border-2 border-border'>
@@ -49,7 +43,7 @@ export function Connections() {
               <th className='border-2 border-r-0 border-t-0 border-border'>Примечание</th>
             </tr>
           </thead>
-          <tbody>{data && <Row data={data} />}</tbody>
+          <tbody>{data && <Row videoDevaice={data} />}</tbody>
         </table>
       </div>
     </div>

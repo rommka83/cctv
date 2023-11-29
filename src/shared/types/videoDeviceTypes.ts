@@ -2,6 +2,7 @@ export interface ICamera {
   entityId: number;
   videoDeviceId2: number;
   name: string;
+  dron?: string;
   cameras: [
     {
       entityId: number;
@@ -25,4 +26,5 @@ export interface IVideoDevice {
   uri: string;
   cameraSystem: ICamera[];
   activate: boolean;
+  selected: boolean;
 }
