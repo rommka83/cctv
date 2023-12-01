@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.td {
+  @apply border-2 border-border text-center;
+}
+.td-l {
+  @apply border-2 border-l-0 border-border text-center;
+}
+.td-r {
+  @apply border-2 border-r-0 border-border text-center;
+}

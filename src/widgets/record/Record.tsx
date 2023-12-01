@@ -20,7 +20,7 @@ import { creatSession } from '../../store/slices/sessionSlice';
 type Props = { className?: string };
 
 export function Record({ className }: Props) {
-  const { data } = useAppSelector(camerasActive);
+  const { cameras } = useAppSelector(camerasActive);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const dispatch = useAppDispatch();
@@ -28,17 +28,16 @@ export function Record({ className }: Props) {
   const handleOpen = () => setOpen((cur) => !cur);
 
   const handleChange = (value: boolean) => {
-    console.log(value);
+    value;
   };
 
-  data;
   return (
     <div className={`${className} flex h-full flex-col pb-8`}>
       <div className='flex items-center gap-8 py-3'>
         <span className='text-2xl text-secondary'>Запись</span>
         <div className='flex items-center gap-4'>
           <BtnControl
-            active={data.length > 0 ? true : false}
+            active={cameras.length > 0 ? true : false}
             type='add'
             onClick={() => setOpen(true)}
           />
@@ -46,7 +45,7 @@ export function Record({ className }: Props) {
           <BtnControl type='play' />
         </div>
       </div>
-      <div className='flex-1 rounded border-2 border-border'>
+      <div className='td flex-1 rounded'>
         <table className='w-full '>
           <thead>
             <tr>
@@ -62,16 +61,7 @@ export function Record({ className }: Props) {
             </tr>
           </thead>
           <tbody>
-            <Row
-              data={{
-                1: 'первое значение',
-                2: 'второе значение',
-                3: 'третее значение',
-                4: 'четвёртое значение',
-                5: 'пятое значение',
-                6: 'шестое значение',
-              }}
-            />
+            <Row />
           </tbody>
         </table>
       </div>

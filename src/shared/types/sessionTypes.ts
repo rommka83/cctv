@@ -1,5 +1,6 @@
 export interface ISession {
   id: number;
+  name: string;
   metadata: string;
   created: string;
   ended: unknown;

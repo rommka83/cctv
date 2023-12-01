@@ -1,23 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 
 import { SvgSprite } from '../../shared/ui/svg-sprite';
-import { useAppDispatch } from '../../store/hooks';
-import { deleteVideoDevice, getVideoDevice } from '../../store/slices/videoDeviceSlice';
-
 export const Menu = () => {
   const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
 
   return (
     <nav className='flex h-[10%] w-full justify-between bg-main'>
       <ul className='flex h-full items-center gap-12 px-8'>
-        <li
-          className='cursor-pointer'
-          onClick={() => {
-            dispatch(deleteVideoDevice(257));
-            dispatch(getVideoDevice());
-          }}
-        >
+        <li className='cursor-pointer'>
           <Link to='/cctv/startPage'>
             <SvgSprite
               type='power'

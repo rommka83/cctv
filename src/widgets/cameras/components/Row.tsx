@@ -6,37 +6,35 @@ import { camerasActive, changeActiveCameras } from '../../../store/slices/camera
 type Props = {
   name: string;
   camera: ICamera;
+  selected?: boolean;
 };
 
-export default function Row({ name, camera }: Props) {
-  const { data } = useAppSelector(camerasActive);
+export default function Row({ name, camera, selected }: Props) {
+  const { cameras } = useAppSelector(camerasActive);
 
   const dispatch = useAppDispatch();
 
   const handleChange = (value: boolean) => {
     let arr: ICamera[];
     if (value) {
-      arr = [...data, { ...camera, dron: name }];
+      arr = [...cameras, { ...camera, dron: name }];
       dispatch(changeActiveCameras(arr));
     } else {
-      arr = data.filter((el) => el.id !== camera.id);
+      arr = cameras.filter((el) => el.id !== camera.id);
       dispatch(changeActiveCameras(arr));
     }
   };
 
-  console.log(data);
   return (
     <tr>
-      <td className='border-2 border-l-0 border-border text-center'>
-        <CustomCheckBox handleCheck={(val) => handleChange(val)} />
+      <td className='td border-l-0'>
+        <CustomCheckBox handleCheck={(val) => handleChange(val)} check={selected} />
       </td>
-      <td className='border-2 border-border text-center'>{name}</td>
-      <td className='border-2 border-border text-center'>{camera.name}</td>
-      <td className='border-2 border-border text-center'>
-        {camera.cameras[0].type !== 'VIS' ? 'Да' : 'Нет'}
-      </td>
-      <td className='border-2 border-border text-center'>{camera.cameras[0].resolution}</td>
-      <td className='border-2 border-r-0 border-border text-center'>''</td>
+      <td className='td'>{name}</td>
+      <td className='td'>{camera.name}</td>
+      <td className='td'>{camera.cameras[0].type !== 'VIS' ? 'Да' : 'Нет'}</td>
+      <td className='td'>{camera.cameras[0].resolution}</td>
+      <td className='td border-r-0'>''</td>
     </tr>
   );
 }

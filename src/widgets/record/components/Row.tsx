@@ -1,24 +1,27 @@
 import { CustomCheckBox } from '../../../shared/ui/customCheckBox';
+import { useAppSelector } from '../../../store/hooks';
+import { camerasActive } from '../../../store/slices/camerasSlice';
+import { sessionActive } from '../../../store/slices/sessionSlice';
 
-type Props = {
-  data: { 1: string; 2: string; 3: string; 4: string; 5: string; 6: string };
-};
+export default function Row() {
+  const { cameras } = useAppSelector(camerasActive);
+  const { session } = useAppSelector(sessionActive);
 
-export default function Row({ data }: Props) {
   const handleChange = (value: boolean) => {
-    console.log(value);
+    value;
   };
-  return (
+
+  return session ? (
     <tr>
-      <td className='border-2 border-l-0 border-border text-center'>
+      <td className='td border-l-0'>
         <CustomCheckBox handleCheck={(val) => handleChange(val)} />
       </td>
-      <td className='border-2 border-border text-center'>{data[1]}</td>
-      <td className='border-2 border-border text-center'>{data[2]}</td>
-      <td className='border-2 border-border text-center'>{data[3]}</td>
-      <td className='border-2 border-border text-center'>{data[4]}</td>
-      <td className='border-2 border-border text-center'>{data[5]}</td>
-      <td className='border-2 border-r-0 border-border text-center'>{data[6]}</td>
+      <td className='td'>{session?.name}</td>
+      <td className='td'>{cameras.map((el) => `${el.dron} - ${el.name}, `)}</td>
+      <td className='td'>{new Date(session.created).toLocaleDateString().toString()}</td>
+      <td className='td'>{'?'}</td>
+      <td className='td'>{'?'}</td>
+      <td className='td border-r-0'>{''}</td>
     </tr>
-  );
+  ) : null;
 }

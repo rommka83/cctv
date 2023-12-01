@@ -5,29 +5,26 @@ import { IVideoDevice } from '../../shared/types/videoDeviceTypes';
 import { RootState } from '../store';
 
 export type videoDeviceState = {
-  data: IVideoDevice | null;
+  devices: IVideoDevice[] | null;
   pending: boolean;
   error: boolean;
 };
 
 const initialState: videoDeviceState = {
-  data: null,
+  devices: null,
   pending: false,
   error: false,
 };
 
 export const getVideoDevice = createAsyncThunk('videoDevice/getVideoDevice', async () => {
   const response = await axios
-    .post('http://192.168.5.127:7300/video_device', {
-      body: 'http://192.168.5.127:7301',
-    })
+    .get('http://192.168.5.127:7300/video_device/saved')
     .then((resp) => resp.data)
-    .catch((err) => alert(`${err.message}\n\nпопробуйте нажать на кнопку подключения повторно`));
+    .catch((err) => console.log(err));
 
   return response;
 });
 
-// TODO: удаление по id
 export const deleteVideoDevice = createAsyncThunk(
   'videoDevice/deleteVideoDevice',
   async (id?: number) => {
@@ -39,8 +36,11 @@ export const videoDeviceSlice = createSlice({
   name: 'videoDevice',
   initialState,
   reducers: {
-    changeSelected: (state, action: PayloadAction<boolean>) => {
-      if (state.data) state.data.selected = action.payload;
+    changeSelected: (state, action: PayloadAction<{ selected: boolean; id: number }>) => {
+      if (state.devices)
+        state.devices = state.devices.map((el) =>
+          el.id === action.payload.id ? { ...el, selected: action.payload.selected } : el,
+        );
     },
   },
   extraReducers: (builder) => {
@@ -50,8 +50,8 @@ export const videoDeviceSlice = createSlice({
       })
       .addCase(getVideoDevice.fulfilled, (state, { payload }) => {
         state.pending = false;
-        state.data = payload;
-        if (state.data) state.data.selected = false;
+        state.devices = payload;
+        // if (state.devices) state.devices = state.devices.map((el) => ({ ...el, selected: false }));
       })
       .addCase(getVideoDevice.rejected, (state) => {
         state.pending = false;
@@ -60,7 +60,7 @@ export const videoDeviceSlice = createSlice({
 
       .addCase(deleteVideoDevice.fulfilled, (state) => {
         state.pending = false;
-        state.data = null;
+        state.devices = null;
         state.error = false;
       });
   },

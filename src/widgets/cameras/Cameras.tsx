@@ -1,21 +1,35 @@
+import { useEffect, useState } from 'react';
+
 import Row from './components/Row';
 import { CustomCheckBox } from '../../shared/ui/customCheckBox';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { changeActiveCameras } from '../../store/slices/camerasSlice';
 import { videoDevice } from '../../store/slices/videoDeviceSlice';
 
 export function Cameras() {
   const { data } = useAppSelector(videoDevice);
+  const [selectAll, setSelectAll] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleChange = (value: boolean) => {
-    console.log(value);
+    setSelectAll(value);
   };
+
+  useEffect(() => {
+    if (selectAll && data) {
+      const arr = data.cameraSystem.map((el) => ({ ...el, dron: data.name }));
+      dispatch(changeActiveCameras(arr));
+    } else {
+      dispatch(changeActiveCameras([]));
+    }
+  }, [data, dispatch, selectAll]);
 
   return (
     <div className='flex h-full flex-col'>
       <div className='flex h-20 items-center'>
         <span className='text-2xl text-secondary'>Камеры</span>
       </div>
-      <div className='flex-1 rounded border-2 border-border'>
+      <div className='td flex-1 rounded'>
         <table className='w-full '>
           <thead>
             <tr>
@@ -32,7 +46,7 @@ export function Cameras() {
           <tbody>
             {data?.selected &&
               data.cameraSystem.map((camera) => (
-                <Row key={camera.id} name={data.name} camera={camera} />
+                <Row key={camera.id} name={data.name} camera={camera} selected={selectAll} />
               ))}
           </tbody>
         </table>

@@ -5,13 +5,13 @@ import { ISession } from '../../shared/types/sessionTypes';
 import { RootState } from '../store';
 
 export type videoDeviceState = {
-  data: ISession | null;
+  session: ISession | null;
   pending: boolean;
   error: boolean;
 };
 
 const initialState: videoDeviceState = {
-  data: null,
+  session: null,
   pending: false,
   error: false,
 };
@@ -19,11 +19,11 @@ const initialState: videoDeviceState = {
 export const creatSession = createAsyncThunk('session/creatSession', async (name: string) => {
   const response = await axios
     .post(`http://192.168.5.127:7300/video_device/all/session`, {
-      sessionName: name,
+      name: name,
     })
     .then((resp) => resp.data)
     .catch((err) => alert(err.message));
-  console.log(response);
+
   return response;
 });
 
@@ -38,7 +38,7 @@ export const sessionSlice = createSlice({
       })
       .addCase(creatSession.fulfilled, (state, { payload }) => {
         state.pending = false;
-        state.data = payload;
+        state.session = payload;
       })
       .addCase(creatSession.rejected, (state) => {
         state.pending = false;
@@ -47,6 +47,6 @@ export const sessionSlice = createSlice({
   },
 });
 
-export const session = (state: RootState) => state.session;
+export const sessionActive = (state: RootState) => state.session;
 
 export default sessionSlice.reducer;

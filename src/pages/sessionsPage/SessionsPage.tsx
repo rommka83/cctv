@@ -2,7 +2,7 @@ import { CustomCheckBox } from '../../shared/ui/customCheckBox';
 
 export function SessionsPage() {
   const handleChange = (value: boolean) => {
-    console.log(value);
+    value;
   };
 
   return (

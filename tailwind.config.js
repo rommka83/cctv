@@ -22,7 +22,7 @@ module.exports = withMT({
       placeholder: '#444C8B',
       button: '#379F27',
       white: '#fff',
-      red: 'red',
+      myred: 'red',
     },
   },
   plugins: ['prettier-plugin-tailwindcss'],

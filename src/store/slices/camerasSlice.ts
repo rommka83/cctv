@@ -4,11 +4,11 @@ import { ICamera } from '../../shared/types/videoDeviceTypes';
 import { RootState } from '../store';
 
 export type videoDeviceState = {
-  data: ICamera[];
+  cameras: ICamera[];
 };
 
 const initialState: videoDeviceState = {
-  data: [],
+  cameras: [],
 };
 
 export const camerasSlice = createSlice({
@@ -16,7 +16,7 @@ export const camerasSlice = createSlice({
   initialState,
   reducers: {
     changeActiveCameras: (state, action: PayloadAction<ICamera[]>) => {
-      state.data = action.payload;
+      state.cameras = action.payload;
     },
   },
 });

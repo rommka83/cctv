@@ -4,7 +4,7 @@ import { VideoPlayer } from '../../widgets/videoPlayer';
 
 export function CalculationPage() {
   const handleChange = (value: boolean) => {
-    console.log(value);
+    value;
   };
 
   return (

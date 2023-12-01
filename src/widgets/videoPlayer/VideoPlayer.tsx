@@ -149,7 +149,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
           <MenuList className='border-none bg-main'>
             <MenuItem className='flex items-center hover:bg-placeholder focus:bg-placeholder active:bg-placeholder'>
               <span className='text-secondary'>скорость:</span>
-              <span className='ml-auto text-red'>{speed}</span>
+              <span className='ml-auto text-myred'>{speed}</span>
             </MenuItem>
 
             <MenuItem
@@ -192,7 +192,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
               onClick={() => setTypeCamera((old) => (old === 'опт.' ? 'инфр.' : 'опт.'))}
             >
               <span className='text-secondary'>тип камеры:</span>
-              <span className='ml-auto text-red'>{typeCamera}</span>
+              <span className='ml-auto text-myred'>{typeCamera}</span>
             </MenuItem>
             <MenuItem
               className='flex items-center hover:bg-placeholder focus:bg-placeholder active:bg-placeholder'
@@ -212,7 +212,7 @@ export const VideoPlayer = ({ url, name, handleFull }: Props) => {
               className='hover:bg-placeholder focus:bg-placeholder active:bg-placeholder'
               onClick={() => setMenuVerticalIsOpen(false)}
             >
-              <span className='text-red'>Выйти</span>
+              <span className='text-myred'>Выйти</span>
             </MenuItem>
           </MenuList>
         </Menu>
