@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   Dialog,
@@ -15,12 +15,13 @@ import { BtnControl } from '../../shared/ui/btnControl';
 import { CustomCheckBox } from '../../shared/ui/customCheckBox';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { camerasActive } from '../../store/slices/camerasSlice';
-import { creatSession } from '../../store/slices/sessionSlice';
+import { creatSession, sessionActive, updateSession } from '../../store/slices/sessionSlice';
 
 type Props = { className?: string };
 
 export function Record({ className }: Props) {
   const { cameras } = useAppSelector(camerasActive);
+  const { session } = useAppSelector(sessionActive);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const dispatch = useAppDispatch();
@@ -30,6 +31,11 @@ export function Record({ className }: Props) {
   const handleChange = (value: boolean) => {
     value;
   };
+
+  useEffect(() => {
+    dispatch(updateSession());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={`${className} flex h-full flex-col pb-8`}>
@@ -45,7 +51,7 @@ export function Record({ className }: Props) {
           <BtnControl type='play' />
         </div>
       </div>
-      <div className='td flex-1 rounded'>
+      <div className='td flex-1 overflow-auto rounded'>
         <table className='w-full '>
           <thead>
             <tr>
@@ -60,9 +66,7 @@ export function Record({ className }: Props) {
               <th className='border-2 border-r-0 border-t-0 border-border'>Примечание</th>
             </tr>
           </thead>
-          <tbody>
-            <Row />
-          </tbody>
+          <tbody>{session && session.map((el) => <Row key={el.id} session={el} />)}</tbody>
         </table>
       </div>
       <Dialog size='xs' open={open} handler={handleOpen} className='bg-transparent shadow-none'>

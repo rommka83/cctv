@@ -5,7 +5,7 @@ import { ISession } from '../../shared/types/sessionTypes';
 import { RootState } from '../store';
 
 export type videoDeviceState = {
-  session: ISession | null;
+  session: ISession[] | null;
   pending: boolean;
   error: boolean;
 };
@@ -17,12 +17,27 @@ const initialState: videoDeviceState = {
 };
 
 export const creatSession = createAsyncThunk('session/creatSession', async (name: string) => {
-  const response = await axios
+  await axios
     .post(`http://192.168.5.127:7300/video_device/all/session`, {
       name: name,
     })
-    .then((resp) => resp.data)
     .catch((err) => alert(err.message));
+
+  await axios.get('http://192.168.5.127:7300/videos/all/video/info?sessionId=all');
+
+  const response = await axios
+    .get('http://192.168.5.127:7300/video_device/all/session/-1/updated')
+    .then((res) => res.data);
+
+  return response;
+});
+
+export const updateSession = createAsyncThunk('session/updateSession', async () => {
+  await axios.get('http://192.168.5.127:7300/videos/all/video/info?sessionId=all');
+
+  const response = await axios
+    .get('http://192.168.5.127:7300/video_device/all/session/-1/updated')
+    .then((res) => res.data);
 
   return response;
 });
@@ -41,6 +56,18 @@ export const sessionSlice = createSlice({
         state.session = payload;
       })
       .addCase(creatSession.rejected, (state) => {
+        state.pending = false;
+        state.error = true;
+      })
+
+      .addCase(updateSession.pending, (state) => {
+        state.pending = true;
+      })
+      .addCase(updateSession.fulfilled, (state, { payload }) => {
+        state.pending = false;
+        state.session = payload;
+      })
+      .addCase(updateSession.rejected, (state) => {
         state.pending = false;
         state.error = true;
       });

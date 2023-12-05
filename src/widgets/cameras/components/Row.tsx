@@ -27,14 +27,14 @@ export default function Row({ name, camera, selected }: Props) {
 
   return (
     <tr>
-      <td className='td border-l-0'>
+      <td className='td-l'>
         <CustomCheckBox handleCheck={(val) => handleChange(val)} check={selected} />
       </td>
       <td className='td'>{name}</td>
       <td className='td'>{camera.name}</td>
       <td className='td'>{camera.cameras[0].type !== 'VIS' ? 'Да' : 'Нет'}</td>
       <td className='td'>{camera.cameras[0].resolution}</td>
-      <td className='td border-r-0'>''</td>
+      <td className='td-r'>''</td>
     </tr>
   );
 }
