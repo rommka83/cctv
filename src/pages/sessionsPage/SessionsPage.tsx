@@ -24,6 +24,10 @@ export function SessionsPage() {
   useEffect(() => {
     dispatch(updateSession());
 
+    axios
+      .get('http://192.168.5.127:7300/videos/123123123/videoDevicesForTable')
+      .then((res) => console.log(res.data));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
